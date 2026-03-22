@@ -1,0 +1,107 @@
+/* 自定义响应式优化 */
+
+/* 1. 表格响应式处理 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+@media screen and (max-width: 767px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  th, td {
+    min-width: 120px; /* 确保在小屏幕上有足够宽度 */
+  }
+}
+
+/* 2. 图片响应式 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 3. 代码块响应式 */
+pre, code {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 767px) {
+  pre {
+    font-size: 0.9em;
+    padding: 0.8rem;
+  }
+}
+
+/* 4. 文章内容优化 */
+.article-content {
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 767px) {
+  .article-content {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .article-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .article-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .article-content h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* 5. 侧边栏在小屏幕上的优化 */
+@media screen and (max-width: 1023px) {
+  #main-grid.right-sidebar {
+    grid-template-columns: 1fr;
+  }
+  
+  #sidebar-wrapper {
+    order: 2;
+    margin-top: 2rem;
+  }
+}
+
+/* 6. 导航栏优化 */
+@media screen and (max-width: 767px) {
+  #nav {
+    padding: 0.5rem;
+  }
+  
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .menu-item {
+    margin: 0.3rem;
+  }
+}
+
+/* 7. 页脚优化 */
+@media screen and (max-width: 767px) {
+  footer {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}

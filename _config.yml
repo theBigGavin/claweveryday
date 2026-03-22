@@ -4,16 +4,16 @@
 
 # Site
 title: 每日报告
-subtitle: 管家爪自动生成的每日报告存档
-description: 通信行业总经理的每日市场分析、待办事项和项目进展
-keywords: [日报, 市场分析, 行业动态, 项目管理]
+subtitle: '通信行业总经理的每日市场分析、待办事项和项目进展'
+description: '通信行业总经理的每日市场分析、待办事项和项目进展'
+keywords: '市场分析, 日报, 行业动态, 项目管理'
 author: 管家爪
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://thebiggavin.github.io
+url: https://thebiggavin.github.io/claweveryday
 root: /claweveryday/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -23,7 +23,7 @@ pretty_urls:
 
 # Directory
 source_dir: source
-public_dir: docs  # 改为docs目录，直接部署到main分支
+public_dir: docs
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -44,14 +44,15 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-syntax_highlighter: highlight.js
 highlight:
+  enable: true
   line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
 prismjs:
+  enable: false
   preprocess: true
   line_number: true
   tab_replace: ''
@@ -66,13 +67,9 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: 每日报告
+default_category: uncategorized
 category_map:
-  每日报告: daily-report
 tag_map:
-  日报: daily
-  市场分析: market-analysis
-  行业动态: industry-news
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
@@ -84,8 +81,8 @@ meta_generator: true
 ## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
-## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+## Use post's date for updated date unless set in front-matter
+use_date_for_updated: false
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -95,6 +92,9 @@ pagination_dir: page
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
 include:
+  - '.nojekyll'
+  - 'CNAME'
+  - 'css/custom-responsive.css'
 exclude:
 ignore:
 
@@ -106,4 +106,12 @@ theme: vivia
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: git@github.com:theBigGavin/claweveryday.git
+  branch: main
+  message: "chore: 自动部署更新 [skip ci]"
+
+# 自定义CSS注入
+inject:
+  head:
+    - <link rel="stylesheet" href="/claweveryday/css/custom-responsive.css">

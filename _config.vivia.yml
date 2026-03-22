@@ -107,6 +107,20 @@ math: false
 mermaid: false
 lazyload: true
 
+# 响应式优化配置
+responsive:
+  # 表格响应式
+  table:
+    enable: true
+    scrollable: true
+  # 图片响应式  
+  image:
+    max_width: 100%
+  # 代码块响应式
+  code_block:
+    word_break: break-word
+    overflow_x: auto
+
 # 404 Page
 page404:
   enable: true
