@@ -1,0 +1,223 @@
+/* 自定义CSS - Icarus主题优化 */
+
+/* 1. 响应式表格 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+}
+
+table td {
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+  vertical-align: top;
+}
+
+/* 移动端表格滚动 */
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  table {
+    font-size: 0.85rem;
+  }
+  
+  table th, table td {
+    padding: 0.5rem;
+  }
+}
+
+/* 2. 链接样式优化 */
+a {
+  color: #0366d6;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* 新闻链接特殊样式 */
+.news-link {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-left: 0.5rem;
+}
+
+.news-link:hover {
+  color: #495057;
+}
+
+/* 3. 代码块样式 */
+pre {
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow: auto;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+code {
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+}
+
+/* 4. 文章内容优化 */
+.article-content {
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.article-content h1 {
+  font-size: 2em;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+.article-content h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+.article-content h3 {
+  font-size: 1.25em;
+}
+
+.article-content h4 {
+  font-size: 1em;
+}
+
+/* 5. 列表样式 */
+.article-content ul,
+.article-content ol {
+  padding-left: 2em;
+  margin: 1em 0;
+}
+
+.article-content li {
+  margin: 0.5em 0;
+}
+
+/* 6. 引用块样式 */
+.article-content blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+  background-color: #f8f9fa;
+}
+
+/* 7. 图片响应式 */
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+  border-radius: 4px;
+}
+
+/* 8. 移动端优化 */
+@media (max-width: 768px) {
+  .article-content {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .article-content h1 {
+    font-size: 1.75em;
+  }
+  
+  .article-content h2 {
+    font-size: 1.35em;
+  }
+  
+  .article-content h3 {
+    font-size: 1.15em;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* 9. 打印样式 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .article-content {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    font-weight: normal;
+  }
+}
+
+/* 10. 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+  
+  table th {
+    background-color: #2d2d2d;
+    border-color: #444;
+  }
+  
+  table td {
+    border-color: #444;
+  }
+  
+  pre {
+    background-color: #2d2d2d;
+  }
+  
+  code {
+    background-color: #333;
+  }
+  
+  .article-content blockquote {
+    background-color: #2d2d2d;
+    border-left-color: #555;
+    color: #aaa;
+  }
+}

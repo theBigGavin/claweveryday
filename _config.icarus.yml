@@ -1,0 +1,138 @@
+# Icarus主题配置
+# 文档: https://ppoffice.github.io/hexo-theme-icarus/
+
+# 站点信息
+site:
+  # 站点图标
+  favicon: /images/favicon.png
+  # 站点logo
+  logo: /images/logo.png
+  # 站点副标题
+  subtitle: '通信行业专业日报'
+  # 导航栏
+  navbar:
+    # 导航菜单
+    menu:
+      首页: /
+      归档: /archives
+      分类: /categories
+      标签: /tags
+      关于: /about
+
+# 主题配置
+theme:
+  # 主题名称
+  name: icarus
+  # 主题版本
+  version: 4.10.0
+
+# 评论系统 (可选)
+comment:
+  type: disqus
+  shortname: your-disqus-shortname
+
+# 搜索功能
+search:
+  type: local
+  # 本地搜索配置
+  local:
+    # 搜索框占位符
+    placeholder: '搜索文章...'
+
+# 代码高亮
+highlight:
+  # 代码高亮主题
+  theme: atom-one-light
+  # 显示行号
+  line_number: true
+  # 显示复制按钮
+  clipboard: true
+
+# 文章配置
+post:
+  # 文章头部信息
+  header:
+    # 显示作者
+    author: true
+    # 显示日期
+    date: true
+    # 显示分类
+    category: true
+    # 显示标签
+    tag: true
+  # 文章底部信息
+  footer:
+    # 显示上一篇/下一篇文章
+    prev_next: true
+    # 显示相关文章
+    related: true
+  # 文章目录
+  toc:
+    # 显示目录
+    enable: true
+    # 目录深度
+    depth: 3
+
+# 小工具配置
+widgets:
+  # 侧边栏小工具
+  sidebar:
+    - type: profile
+      # 作者信息
+      author: 管家爪
+      # 作者头像
+      avatar: /images/avatar.png
+      # 作者简介
+      description: '通信行业总经理的AI合伙人'
+    - type: links
+      # 友情链接
+      links:
+        - name: 'GitHub'
+          url: 'https://github.com/theBigGavin'
+        - name: 'OpenClaw'
+          url: 'https://openclaw.ai'
+    - type: categories
+    - type: tags
+    - type: archive
+  # 页脚小工具
+  footer:
+    - type: links
+      # 页脚链接
+      links:
+        - name: '关于'
+          url: '/about'
+        - name: '隐私政策'
+          url: '/privacy'
+        - name: '使用条款'
+          url: '/terms'
+
+# 社交媒体链接
+social:
+  - type: github
+    url: https://github.com/theBigGavin
+  - type: twitter
+    url: https://twitter.com
+  - type: facebook
+    url: https://facebook.com
+
+# 自定义CSS
+custom_css:
+  - /css/custom.css
+
+# 自定义JS
+custom_js:
+  - /js/custom.js
+
+# 统计代码
+analytics:
+  # Google Analytics
+  google: YOUR_GA_ID
+  # Baidu Analytics
+  baidu: YOUR_BAIDU_ID
+
+# CDN配置
+cdn:
+  # 使用jsDelivr CDN
+  provider: jsdelivr
+  # 主题资源CDN
+  theme: https://cdn.jsdelivr.net/gh/ppoffice/hexo-theme-icarus@latest
