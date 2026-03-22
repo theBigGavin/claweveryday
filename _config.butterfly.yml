@@ -1,0 +1,136 @@
+# Butterfly Theme Configuration
+# Docs: https://butterfly.js.org/
+
+# 主题基本配置
+theme_color:
+  enable: true
+  main: "#49b1f5"
+  paginator: "#00c4b6"
+  button_hover: "#FF7242"
+  text_selection: "#00c4b6"
+  link_color: "#99a9bf"
+  link_hover_color: "#49b1f5"
+  meta_color: "#858585"
+  hr_color: "#A4D8FA"
+  code_foreground: "#F47466"
+  code_background: "rgba(27, 31, 35, .05)"
+  toc_color: "#49b1f5"
+
+# 网站图标
+favicon: /claweveryday/images/favicon-32x32-next.png
+
+# 头像
+avatar:
+  img: /claweveryday/images/avatar.gif
+  effect: true
+
+# 导航菜单
+menu:
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  分类: /categories/ || fas fa-folder
+  标签: /tags/ || fas fa-tags
+  关于: /about/ || fas fa-user-circle
+
+# 代码高亮
+highlight_theme: mac
+highlight_copy: true
+highlight_lang: true
+highlight_shrink: false
+
+# 侧边栏
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  card_author:
+    enable: true
+    description: 每日报告自动生成系统
+  card_announcement:
+    enable: true
+    content: 专业、自动化的每日市场分析报告
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date
+  card_categories:
+    enable: true
+    limit: 8
+    expand: none
+  card_tags:
+    enable: true
+    limit: 40
+    color: false
+    orderby: random
+    order: 1
+  card_archives:
+    enable: true
+    type: monthly
+    format: YYYY年MM月
+    order: -1
+    limit: 8
+  card_webinfo:
+    enable: true
+
+# 页脚设置
+footer:
+  owner:
+    enable: true
+    since: 2026
+  custom_text: 每日报告 · 专业分析 · 自动生成
+  copyright: false
+  ICP:
+    enable: false
+    text: 
+    url: 
+
+# 文章设置
+post:
+  meta:
+    date_type: both
+    categories: true
+    tags: true
+    wordcount: true
+    min2read: true
+  copyright:
+    enable: true
+    decode: true
+    license: CC BY-NC-SA 4.0
+    license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+  reward:
+    enable: false
+  related_post:
+    enable: true
+    limit: 6
+
+# 搜索
+local_search:
+  enable: true
+  preload: false
+  CDN:
+
+# 夜间模式
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: 1
+
+# 访问统计
+busuanzi:
+  enable: false
+
+# 数学公式
+math:
+  enable: false
+
+# 图片查看器
+medium_zoom: true
+
+# 评论系统（暂不启用）
+comments:
+  use: 
+  text: true
+  lazyload: false
+  count: false
