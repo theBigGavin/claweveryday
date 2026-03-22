@@ -1,4 +1,4 @@
-name: Build and Deploy to Main Branch
+name: Build and Deploy
 
 on:
   push:
@@ -6,19 +6,18 @@ on:
   workflow_dispatch:  # 允许手动触发
 
 env:
-  # 强制使用Node.js 24，避免警告
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout with token
+    - name: Checkout
       uses: actions/checkout@v4
       with:
-        submodules: true  # 获取主题子模块
-        token: ${{ secrets.GITHUB_TOKEN }}  # 使用token以便推送
+        submodules: true
+        token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -29,32 +28,39 @@ jobs:
     - name: Install Dependencies
       run: npm install
       
-    - name: Generate Site
+    - name: Build Site
       run: |
         npm run build
-        # 移动生成的文件到docs目录
+        # 重命名public为docs
         rm -rf docs
         mv public docs
         
-    - name: Configure Git
+    - name: Deploy to Main Branch
       run: |
+        # 配置Git
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-    - name: Deploy to Docs Directory
-      run: |
-        # 配置远程URL使用token
+        # 设置远程URL使用token
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         
-        # 拉取最新更改（避免冲突）
-        git pull origin main --rebase --autostash
-        
-        # 强制替换docs目录
-        git rm -rf docs/ 2>/dev/null || true
-        git add docs/
-        
-        # 提交更改
-        git commit -m "chore: 自动构建并更新docs目录 [skip ci]" || echo "没有更改可提交"
-        
-        # 推送到main分支（使用force-with-lease安全推送）
-        git push origin main --force-with-lease
+        # 检查是否有docs更改
+        if [ -d "docs" ]; then
+          # 删除旧的docs目录
+          git rm -rf docs 2>/dev/null || true
+          
+          # 添加新的docs目录
+          git add docs/
+          
+          # 提交更改
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: 自动构建站点 [skip ci]"
+            git push origin main
+            echo "✅ 已部署到main分支"
+          else
+            echo "⚠️ 没有更改可提交"
+          fi
+        else
+          echo "❌ docs目录不存在"
+          exit 1
+        fi
