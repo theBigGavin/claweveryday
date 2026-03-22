@@ -1,0 +1,66 @@
+# Vivia Theme Configuration
+# Docs: https://github.com/saicaca/hexo-theme-vivia
+
+# Site Identity
+favicon: /claweveryday/images/favicon-32x32-next.png
+avatar:
+  enabled: true
+  url: /claweveryday/images/avatar.gif
+
+# Navigation
+menu:
+  Home: /
+  Archives: /archives/
+  Categories: /categories/
+  Tags: /tags/
+  About: /about/
+
+# Home Page
+index:
+  post_count: 10
+  order_by: date
+
+# Post
+post:
+  license:
+    enabled: true
+    content: '本文采用 CC BY-NC-SA 4.0 许可协议，转载请注明出处。'
+  reward:
+    enabled: false
+
+# Comments (暂不启用)
+comments:
+  enabled: false
+
+# Search
+search:
+  enabled: true
+
+# Appearance
+dark_mode: true
+theme_color: auto
+
+# Sidebar
+sidebar:
+  position: right
+  display: post
+  profile:
+    enabled: true
+    title: 每日报告
+    subtitle: 专业、自动化的市场分析
+    avatar: /claweveryday/images/avatar.gif
+
+# Footer
+footer:
+  since: 2026
+  icon:
+    name: fas fa-heart
+    animated: true
+    color: "#ff0000"
+  custom_text: 每日报告 · 自动生成系统
+
+# Miscellaneous
+back2top:
+  enable: true
+  sidebar: false
+  scrollpercent: true
