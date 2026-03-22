@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<base href="/claweveryday/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS诊断页面</title>
+    
+    <!-- 测试1: 内联CSS -->
+    <style>
+        .inline-test {
+            color: red;
+            font-weight: bold;
+            font-size: 24px;
+            border: 3px solid blue;
+            padding: 20px;
+            margin: 20px;
+            background-color: yellow;
+        }
+    </style>
+    
+    <!-- 测试2: 相对路径CSS -->
+    
+    
+    <!-- 测试3: 绝对路径CSS -->
+    <link rel="stylesheet" href="/claweveryday/css/fallback.css">
+    
+    <!-- 测试4: 完整URL CSS -->
+    <link rel="stylesheet" href="https://thebiggavin.github.io/claweveryday/css/fallback.css">
+</head>
+<body>
+    <h1>CSS诊断测试</h1>
+    
+    <div class="inline-test">
+        ✅ 测试1: 内联CSS<br>
+        如果这个框是红色粗体字、蓝色边框、黄色背景，说明内联CSS工作正常。
+    </div>
+    
+    <div class="card" style="margin: 20px; padding: 20px; border: 2px dashed green;">
+        <h2>测试2: fallback.css中的.card类</h2>
+        <p>如果这个框有阴影、圆角和白色背景，说明fallback.css通过相对路径加载成功。</p>
+    </div>
+    
+    <div style="margin: 20px; padding: 20px; background-color: #f0f0f0;">
+        <h2>CSS加载状态</h2>
+        <div id="css-status">
+            <p>检查中...</p>
+        </div>
+        
+        <h2>手动测试链接</h2>
+        <ul>
+            <li><a href="/claweveryday/css/fallback.css" target="_blank">相对路径: css/fallback.css</a></li>
+            <li><a href="/claweveryday/css/fallback.css" target="_blank">绝对路径: /claweveryday/css/fallback.css</a></li>
+            <li><a href="https://thebiggavin.github.io/claweveryday/css/fallback.css" target="_blank">完整URL</a></li>
+        </ul>
+        
+        <h2>问题诊断</h2>
+        <ol>
+            <li>点击上面的链接，看CSS文件是否能直接访问</li>
+            <li>按F12打开开发者工具，查看"网络(Network)"标签</li>
+            <li>检查CSS文件是否返回200状态码</li>
+            <li>检查"控制台(Console)"标签是否有错误</li>
+        </ol>
+    </div>
+    
+    <script>
+        // 检查CSS是否加载
+        function checkCSS() {
+            const statusDiv = document.getElementById('css-status');
+            const sheets = document.styleSheets;
+            let results = [];
+            
+            for (let i = 0; i < sheets.length; i++) {
+                try {
+                    const sheet = sheets[i];
+                    if (sheet.href) {
+                        const filename = sheet.href.split('/').pop();
+                        results.push(`✅ ${filename}: 已加载 (${sheet.href})`);
+                    } else if (sheet.cssRules && sheet.cssRules.length > 0) {
+                        results.push(`✅ 内联CSS: 已加载 (${sheet.cssRules.length} 条规则)`);
+                    }
+                } catch (e) {
+                    // 跨域限制，无法检查
+                    results.push(`⚠️ 样式表 ${i}: 跨域限制无法检查`);
+                }
+            }
+            
+            if (results.length === 0) {
+                results.push('❌ 没有检测到任何样式表');
+            }
+            
+            statusDiv.innerHTML = '<h3>检测到的样式表:</h3>' + results.map(r => `<p>${r}</p>`).join('');
+            
+            // 额外检查：测试fallback.css中的特定样式
+            const testDiv = document.createElement('div');
+            testDiv.className = 'navbar';
+            testDiv.style.position = 'absolute';
+            testDiv.style.left = '-9999px';
+            document.body.appendChild(testDiv);
+            
+            const computedStyle = window.getComputedStyle(testDiv);
+            const hasNavbarStyle = computedStyle.backgroundColor !== '' && computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)';
+            
+            if (hasNavbarStyle) {
+                results.push(`✅ fallback.css中的.navbar类已应用`);
+            } else {
+                results.push(`❌ fallback.css中的.navbar类未应用`);
+            }
+            
+            document.body.removeChild(testDiv);
+            statusDiv.innerHTML = '<h3>检测结果:</h3>' + results.map(r => `<p>${r}</p>`).join('');
+        }
+        
+        // 页面加载后检查
+        window.addEventListener('load', function() {
+            setTimeout(checkCSS, 100); // 给CSS一点时间加载
+        });
+        
+        // 也检查网络错误
+        window.addEventListener('error', function(e) {
+            console.error('页面错误:', e);
+            const statusDiv = document.getElementById('css-status');
+            statusDiv.innerHTML += `<p style="color: red;">❌ 资源加载错误: ${e.target.src || e.target.href}</p>`;
+        }, true);
+    </script>
+</body>
+</html>

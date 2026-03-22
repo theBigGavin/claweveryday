@@ -1,138 +1,92 @@
 # Icarus主题配置
 # 文档: https://ppoffice.github.io/hexo-theme-icarus/
 
-# 站点信息
-site:
-  # 站点图标
-  favicon: /images/favicon.png
-  # 站点logo
-  logo: /images/logo.png
-  # 站点副标题
-  subtitle: '通信行业专业日报'
-  # 导航栏
-  navbar:
-    # 导航菜单
-    menu:
-      首页: /
-      归档: /archives
-      分类: /categories
-      标签: /tags
-      关于: /about
+# 配置版本 (必须)
+version: "6.1.1"
 
-# 主题配置
-theme:
-  # 主题名称
-  name: icarus
-  # 主题版本
-  version: 4.10.0
+# 主题变体: default 或 cyberpunk
+variant: "default"
+
+# 站点logo
+logo: 
+  text: "通信日报"
+
+# 导航栏配置
+navbar:
+  # 导航菜单
+  menu:
+    首页: /
+    归档: /archives
+    分类: /categories
+    标签: /tags
+    关于: /about
+
+# 文章配置
+article:
+  # 显示阅读时间
+  readtime: true
+  # 显示字数统计
+  wordcount: true
+  # 显示目录
+  toc: true
+  # 目录深度
+  toc_depth: 3
+  # 显示上一篇/下一篇文章
+  prev_next: true
+  # 显示相关文章
+  related: true
+
+# 搜索功能 (可选)
+# search:
+#   type: "insight"
+#   # 搜索配置
+#   insight:
+#     # 搜索框占位符
+#     placeholder: "搜索文章..."
 
 # 评论系统 (可选)
 comment:
-  type: disqus
-  shortname: your-disqus-shortname
+  type: "disqus"
+  shortname: "your-disqus-shortname"
 
-# 搜索功能
-search:
-  type: local
-  # 本地搜索配置
-  local:
-    # 搜索框占位符
-    placeholder: '搜索文章...'
+# 侧边栏配置 (简化)
+sidebar:
+  left: {}
 
-# 代码高亮
-highlight:
-  # 代码高亮主题
-  theme: atom-one-light
-  # 显示行号
-  line_number: true
-  # 显示复制按钮
-  clipboard: true
+# 页脚配置
+footer:
+  # 版权信息
+  copyright: "© 2026 通信日报. 保留所有权利."
+  # 页脚链接
+  links:
+    关于: "/about"
+    隐私政策: "/privacy"
+    使用条款: "/terms"
 
-# 文章配置
-post:
-  # 文章头部信息
-  header:
-    # 显示作者
-    author: true
-    # 显示日期
-    date: true
-    # 显示分类
-    category: true
-    # 显示标签
-    tag: true
-  # 文章底部信息
-  footer:
-    # 显示上一篇/下一篇文章
-    prev_next: true
-    # 显示相关文章
-    related: true
-  # 文章目录
-  toc:
-    # 显示目录
-    enable: true
-    # 目录深度
-    depth: 3
+# 插件配置 (简化)
+plugins: {}
 
-# 小工具配置
-widgets:
-  # 侧边栏小工具
-  sidebar:
-    - type: profile
-      # 作者信息
-      author: 管家爪
-      # 作者头像
-      avatar: /images/avatar.png
-      # 作者简介
-      description: '通信行业总经理的AI合伙人'
-    - type: links
-      # 友情链接
-      links:
-        - name: 'GitHub'
-          url: 'https://github.com/theBigGavin'
-        - name: 'OpenClaw'
-          url: 'https://openclaw.ai'
-    - type: categories
-    - type: tags
-    - type: archive
-  # 页脚小工具
-  footer:
-    - type: links
-      # 页脚链接
-      links:
-        - name: '关于'
-          url: '/about'
-        - name: '隐私政策'
-          url: '/privacy'
-        - name: '使用条款'
-          url: '/terms'
+# CDN配置 - 使用本地资源避免CDN被屏蔽
+providers:
+  # 使用本地资源，避免CDN问题
+  cdn: "local"
 
-# 社交媒体链接
-social:
-  - type: github
-    url: https://github.com/theBigGavin
-  - type: twitter
-    url: https://twitter.com
-  - type: facebook
-    url: https://facebook.com
-
-# 自定义CSS
+# 自定义CSS - 添加基本样式确保页面可读
 custom_css:
-  - /css/custom.css
+  - "/css/custom.css"
+  - "/css/custom-responsive.css"
+  - "/css/fallback.css"
 
 # 自定义JS
 custom_js:
-  - /js/custom.js
+  - "/js/custom.js"
 
-# 统计代码
-analytics:
-  # Google Analytics
-  google: YOUR_GA_ID
-  # Baidu Analytics
-  baidu: YOUR_BAIDU_ID
+# 字体配置 - 使用系统字体避免Google字体被屏蔽
+font:
+  # 使用系统字体
+  family:
+    base: '"Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif'
+    code: 'Menlo, Monaco, Consolas, "Courier New", monospace'
 
-# CDN配置
-cdn:
-  # 使用jsDelivr CDN
-  provider: jsdelivr
-  # 主题资源CDN
-  theme: https://cdn.jsdelivr.net/gh/ppoffice/hexo-theme-icarus@latest
+# 禁用可能被屏蔽的外部资源
+external_resources: false

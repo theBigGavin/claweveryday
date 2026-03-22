@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<base href="/claweveryday/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内联CSS测试</title>
+    <style>
+        /* 直接将fallback.css的内容内联到这里 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .navbar {
+            background-color: #fff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .navbar-menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .navbar-item {
+            color: #555;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .navbar-item:hover,
+        .navbar-item.is-active {
+            background-color: #f0f0f0;
+            color: #007bff;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .article-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #222;
+        }
+        
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .content h1 {
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            color: #222;
+        }
+        
+        .content h2 {
+            font-size: 1.6rem;
+            margin: 1.8rem 0 0.9rem;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1.2rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .footer {
+            background-color: #fff;
+            border-top: 1px solid #eaeaea;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+            color: #666;
+        }
+        
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        
+        /* 测试样式 */
+        .test-success {
+            color: green;
+            font-weight: bold;
+            border: 2px solid green;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #e8f5e9;
+        }
+        
+        .test-fail {
+            color: red;
+            font-weight: bold;
+            border: 2px solid red;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #ffebee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>内联CSS测试页面</h1>
+        <p>这个页面将所有CSS样式直接内嵌在HTML中，完全不需要外部CSS文件。</p>
+        
+        <div class="test-success">
+            ✅ 如果这个框是绿色边框和浅绿色背景，说明内联CSS工作正常。
+        </div>
+        
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a class="navbar-logo" href="#">通信日报</a>
+                <div class="navbar-menu">
+                    <a class="navbar-item is-active" href="#">首页</a>
+                    <a class="navbar-item" href="#">归档</a>
+                    <a class="navbar-item" href="#">分类</a>
+                    <a class="navbar-item" href="#">标签</a>
+                    <a class="navbar-item" href="#">关于</a>
+                </div>
+            </div>
+        </nav>
+        
+        <section class="section">
+            <div class="card">
+                <div class="article-meta">
+                    <span>2026-03-22 发表</span>
+                    <span>2026-03-22 更新</span>
+                    <span>每日报告</span>
+                    <span>19 分钟读完</span>
+                </div>
+                <h2 class="title">内联CSS测试文章</h2>
+                <div class="content">
+                    <p>这是一个测试段落，用于验证内容区域的样式。</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>测试项目</th>
+                                <th>状态</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>内联CSS</td>
+                                <td>✅ 工作正常</td>
+                                <td>所有样式直接嵌入HTML</td>
+                            </tr>
+                            <tr>
+                                <td>导航栏</td>
+                                <td>✅ 样式应用</td>
+                                <td>应该有白色背景和边框</td>
+                            </tr>
+                            <tr>
+                                <td>卡片组件</td>
+                                <td>✅ 阴影和圆角</td>
+                                <td>应该有阴影效果</td>
+                            </tr>
+                            <tr>
+                                <td>表格</td>
+                                <td>✅ 交替行颜色</td>
+                                <td>行应该有交替背景色</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <a class="footer-logo" href="#">通信日报</a>
+            <p>© 2026 通信日报. 内联CSS测试页面.</p>
+            <p>这个页面证明CSS可以工作，问题在于外部CSS文件的加载。</p>
+        </footer>
+        
+        <div class="card">
+            <h2>问题诊断</h2>
+            <p>如果这个页面有完整的样式，但主站没有，说明问题在于：</p>
+            <ol>
+                <li><strong>CSS文件路径错误</strong> - 检查HTML中的CSS链接</li>
+                <li><strong>GitHub Pages配置问题</strong> - 检查CNAME和路径设置</li>
+                <li><strong>浏览器缓存</strong> - 按Ctrl+F5强制刷新</li>
+                <li><strong>网络限制</strong> - 某些CDN可能被屏蔽</li>
+            </ol>
+            
+            <h3>测试链接：</h3>
+            <ul>
+                <li><a href="/claweveryday/">返回首页</a></li>
+                <li><a href="/claweveryday/diagnose-css.html">CSS诊断页面</a></li>
+                <li><a href="/claweveryday/css/fallback.css" target="_blank">查看fallback.css文件</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // 验证CSS是否应用
+        window.addEventListener('load', function() {
+            console.log('内联CSS测试页面加载完成');
+            
+            // 测试.navbar类的样式
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                const style = window.getComputedStyle(navbar);
+                console.log('导航栏背景色:', style.backgroundColor);
+                console.log('导航栏边框:', style.borderBottom);
+            }
+            
+            // 测试.card类的样式
+            const card = document.querySelector('.card');
+            if (card) {
+                const style = window.getComputedStyle(card);
+                console.log('卡片阴影:', style.boxShadow);
+                console.log('卡片圆角:', style.borderRadius);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最终CSS测试</title>
+    <base href="/claweveryday/">
+    
+    <!-- 使用绝对路径 -->
+    <link rel="stylesheet" href="/claweveryday/css/fallback.css">
+    
+    <!-- 使用完整URL -->
+    <link rel="stylesheet" href="https://thebiggavin.github.io/claweveryday/css/fallback.css">
+    
+    <style>
+        .test-result {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .success {
+            background-color: #d4edda;
+            border: 2px solid #28a745;
+        }
+        .failure {
+            background-color: #f8d7da;
+            border: 2px solid #dc3545;
+        }
+        .test-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>最终CSS加载测试</h1>
+        <p>测试时间: <span id="current-time"></span></p>
+        
+        <div class="test-result" id="inline-test">
+            <h2>测试1: 内联CSS</h2>
+            <p>检查中...</p>
+        </div>
+        
+        <div class="test-box">
+            <h2>测试2: fallback.css样式</h2>
+            <nav class="navbar">
+                <div class="navbar-container">
+                    <a class="navbar-logo" href="#">通信日报</a>
+                    <div class="navbar-menu">
+                        <a class="navbar-item is-active" href="#">首页</a>
+                        <a class="navbar-item" href="#">归档</a>
+                    </div>
+                </div>
+            </nav>
+            <p>如果导航栏有样式，说明CSS加载成功。</p>
+        </div>
+        
+        <div class="test-box card">
+            <h2>测试3: 卡片样式</h2>
+            <p>如果这个框有阴影和圆角，说明.card类样式已应用。</p>
+        </div>
+        
+        <div class="test-box">
+            <h2>诊断信息</h2>
+            <div id="diagnostic-info">
+                <p>加载中...</p>
+            </div>
+            
+            <h3>手动测试:</h3>
+            <ul>
+                <li><a href="/claweveryday/css/fallback.css" target="_blank">直接访问CSS文件</a></li>
+                <li><a href="/claweveryday/" target="_blank">访问首页</a></li>
+                <li><a href="/claweveryday/inline-css-test.html" target="_blank">内联CSS测试页</a></li>
+            </ul>
+        </div>
+        
+        <footer class="footer">
+            <p>© 2026 通信日报. 最终CSS测试</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 设置当前时间
+        document.getElementById('current-time').textContent = new Date().toLocaleString();
+        
+        // 测试内联CSS
+        const inlineTest = document.getElementById('inline-test');
+        inlineTest.className = 'test-result success';
+        inlineTest.innerHTML = `
+            <h2>✅ 测试1: 内联CSS</h2>
+            <p>内联CSS工作正常。这个绿色框就是内联CSS的效果。</p>
+        `;
+        
+        // 诊断CSS加载
+        function diagnoseCSS() {
+            const diagnosticInfo = document.getElementById('diagnostic-info');
+            const results = [];
+            
+            // 检查样式表
+            const sheets = document.styleSheets;
+            results.push(`<h3>检测到的样式表 (${sheets.length}个):</h3>`);
+            
+            for (let i = 0; i < sheets.length; i++) {
+                try {
+                    const sheet = sheets[i];
+                    if (sheet.href) {
+                        const url = new URL(sheet.href);
+                        const filename = url.pathname.split('/').pop();
+                        results.push(`<p>✅ ${filename}: <code>${sheet.href}</code></p>`);
+                    } else {
+                        results.push(`<p>✅ 内联样式表 #${i}</p>`);
+                    }
+                } catch (e) {
+                    results.push(`<p>⚠️ 样式表 ${i}: 无法访问</p>`);
+                }
+            }
+            
+            // 测试fallback.css中的特定样式
+            const testElement = document.createElement('div');
+            testElement.className = 'navbar';
+            testElement.style.position = 'absolute';
+            testElement.style.left = '-9999px';
+            document.body.appendChild(testElement);
+            
+            const computedStyle = window.getComputedStyle(testElement);
+            const hasBackground = computedStyle.backgroundColor && 
+                                 computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' &&
+                                 computedStyle.backgroundColor !== 'transparent';
+            
+            if (hasBackground) {
+                results.push(`<p>✅ fallback.css: .navbar类已应用 (背景色: ${computedStyle.backgroundColor})</p>`);
+            } else {
+                results.push(`<p>❌ fallback.css: .navbar类未应用</p>`);
+            }
+            
+            document.body.removeChild(testElement);
+            
+            // 测试.card样式
+            const cardElement = document.querySelector('.card');
+            if (cardElement) {
+                const cardStyle = window.getComputedStyle(cardElement);
+                const hasShadow = cardStyle.boxShadow && cardStyle.boxShadow !== 'none';
+                const hasRadius = cardStyle.borderRadius && cardStyle.borderRadius !== '0px';
+                
+                if (hasShadow && hasRadius) {
+                    results.push(`<p>✅ fallback.css: .card类已应用 (阴影: ${cardStyle.boxShadow}, 圆角: ${cardStyle.borderRadius})</p>`);
+                } else {
+                    results.push(`<p>❌ fallback.css: .card类未完全应用</p>`);
+                }
+            }
+            
+            diagnosticInfo.innerHTML = results.join('');
+            
+            // 总结
+            const successCount = results.filter(r => r.includes('✅')).length;
+            const totalCount = results.length;
+            
+            const summary = document.createElement('div');
+            summary.className = successCount === totalCount ? 'test-result success' : 'test-result failure';
+            summary.innerHTML = `<h3>测试总结: ${successCount}/${totalCount} 通过</h3>`;
+            
+            diagnosticInfo.prepend(summary);
+        }
+        
+        // 页面加载后运行诊断
+        window.addEventListener('load', function() {
+            setTimeout(diagnoseCSS, 500); // 给CSS一点时间加载
+        });
+        
+        // 捕获资源加载错误
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'LINK' && e.target.rel === 'stylesheet') {
+                const diagnosticInfo = document.getElementById('diagnostic-info');
+                diagnosticInfo.innerHTML += `<p style="color: red;">❌ CSS加载失败: ${e.target.href}</p>`;
+            }
+        }, true);
+    </script>
+</body>
+</html>

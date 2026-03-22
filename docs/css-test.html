@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<base href="/claweveryday/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS样式测试</title>
+    <!-- 测试fallback.css -->
+    <link rel="stylesheet" href="/claweveryday/css/fallback.css">
+    <style>
+        .test-result {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #ccc;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-color: #ffc107;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        .test-box {
+            background-color: white;
+            border: 2px solid #007bff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS样式加载测试</h1>
+        
+        <div class="test-result success">
+            <h2>✅ 测试1: fallback.css已加载</h2>
+            <p>如果这个框有绿色边框和浅绿色背景，说明fallback.css工作正常。</p>
+            <p>当前使用的是fallback.css提供的基础样式。</p>
+        </div>
+        
+        <div class="test-box">
+            <h2>测试2: 导航栏样式</h2>
+            <nav class="navbar">
+                <div class="navbar-container">
+                    <a class="navbar-logo" href="#">通信日报</a>
+                    <div class="navbar-menu">
+                        <a class="navbar-item is-active" href="#">首页</a>
+                        <a class="navbar-item" href="#">归档</a>
+                        <a class="navbar-item" href="#">分类</a>
+                        <a class="navbar-item" href="#">标签</a>
+                        <a class="navbar-item" href="#">关于</a>
+                    </div>
+                </div>
+            </nav>
+            <p>如果导航栏有样式，说明CSS类名正确应用。</p>
+        </div>
+        
+        <div class="test-box">
+            <h2>测试3: 卡片样式</h2>
+            <div class="card">
+                <div class="article-meta">
+                    <span>2026-03-22 发表</span>
+                    <span>2026-03-22 更新</span>
+                    <span>每日报告</span>
+                    <span>19 分钟读完</span>
+                </div>
+                <h3 class="title">2026-03-22 通信行业专业日报</h3>
+                <div class="content">
+                    <p>这是一个测试段落，用于验证内容区域的样式。</p>
+                    <ul>
+                        <li>列表项1</li>
+                        <li>列表项2</li>
+                        <li>列表项3</li>
+                    </ul>
+                </div>
+            </div>
+            <p>如果卡片有阴影、圆角和内边距，说明卡片样式正确。</p>
+        </div>
+        
+        <div class="test-box">
+            <h2>测试4: 表格样式</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>标题1</th>
+                        <th>标题2</th>
+                        <th>标题3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>数据1</td>
+                        <td>数据2</td>
+                        <td>数据3</td>
+                    </tr>
+                    <tr>
+                        <td>数据4</td>
+                        <td>数据5</td>
+                        <td>数据6</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>如果表格有边框和交替行背景色，说明表格样式正确。</p>
+        </div>
+        
+        <div class="test-box">
+            <h2>测试5: 响应式设计</h2>
+            <p>请调整浏览器窗口大小，测试响应式效果：</p>
+            <ul>
+                <li>在小屏幕上，导航栏应该变为垂直布局</li>
+                <li>表格应该可以横向滚动</li>
+                <li>字体大小应该适当调整</li>
+            </ul>
+        </div>
+        
+        <footer class="footer">
+            <a class="footer-logo" href="#">通信日报</a>
+            <p>© 2026 通信日报. 保留所有权利.</p>
+            <p>Powered by Hexo & Icarus</p>
+        </footer>
+        
+        <div class="test-result warning">
+            <h2>⚠️ 注意</h2>
+            <p>如果页面仍然没有样式，可能是以下原因：</p>
+            <ol>
+                <li>CSS文件路径不正确</li>
+                <li>浏览器缓存了旧版本</li>
+                <li>网络问题导致CSS加载失败</li>
+            </ol>
+            <p>解决方案：</p>
+            <ul>
+                <li>按Ctrl+F5强制刷新页面</li>
+                <li>检查浏览器开发者工具中的"网络"标签，查看CSS文件是否成功加载</li>
+                <li>检查控制台是否有错误信息</li>
+            </ul>
+        </div>
+        
+        <div class="test-result">
+            <h2>测试结果</h2>
+            <p>访问实际网站: <a href="https://thebiggavin.github.io/claweveryday/" target="_blank">https://thebiggavin.github.io/claweveryday/</a></p>
+            <p>测试页面: <a href="/claweveryday/css-test.html" target="_blank">CSS测试页面</a></p>
+            <p>生成时间: 2026-03-22 17:24</p>
+        </div>
+    </div>
+</body>
+</html>

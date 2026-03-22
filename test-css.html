@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .test-box {
+            background-color: white;
+            border: 2px solid #007bff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS加载测试</h1>
+    
+    <div class="test-box">
+        <h2>测试1: 内联CSS</h2>
+        <p class="success">✅ 如果这个框有白色背景和蓝色边框，说明内联CSS工作正常。</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>测试2: 本地CSS文件</h2>
+        <p>尝试加载: <code>/claweveryday/css/default.css</code></p>
+        <link rel="stylesheet" href="/claweveryday/css/default.css">
+        <p>检查元素样式是否应用...</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>测试3: 外部CDN</h2>
+        <p>尝试加载: <code>https://use.fontawesome.com/releases/v6.0.0/css/all.css</code></p>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
+        <p>检查Font Awesome图标是否可用...</p>
+        <p><i class="fas fa-check"></i> 这是一个Font Awesome图标测试</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>测试4: Google字体</h2>
+        <p>尝试加载: <code>https://fonts.googleapis.com/css2?family=Ubuntu</code></p>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&family=Source+Code+Pro">
+        <p style="font-family: 'Ubuntu', sans-serif;">如果这是Ubuntu字体，说明Google字体加载成功。</p>
+    </div>
+    
+    <script>
+        // 检查CSS是否加载
+        function checkCSSLoaded() {
+            const sheets = document.styleSheets;
+            let localLoaded = false;
+            let cdnLoaded = false;
+            let googleLoaded = false;
+            
+            for (let i = 0; i < sheets.length; i++) {
+                const sheet = sheets[i];
+                try {
+                    const href = sheet.href;
+                    if (href && href.includes('/claweveryday/css/default.css')) {
+                        localLoaded = true;
+                    }
+                    if (href && href.includes('fontawesome')) {
+                        cdnLoaded = true;
+                    }
+                    if (href && href.includes('fonts.googleapis')) {
+                        googleLoaded = true;
+                    }
+                } catch (e) {
+                    // 跨域限制，无法检查
+                }
+            }
+            
+            document.getElementById('local-status').textContent = localLoaded ? '✅ 已加载' : '❌ 未加载';
+            document.getElementById('cdn-status').textContent = cdnLoaded ? '✅ 已加载' : '❌ 未加载（可能被屏蔽）';
+            document.getElementById('google-status').textContent = googleLoaded ? '✅ 已加载' : '❌ 未加载（可能被屏蔽）';
+        }
+        
+        // 页面加载后检查
+        window.addEventListener('load', checkCSSLoaded);
+    </script>
+    
+    <div class="test-box">
+        <h2>CSS加载状态</h2>
+        <p>本地CSS: <span id="local-status">检查中...</span></p>
+        <p>Font Awesome CDN: <span id="cdn-status">检查中...</span></p>
+        <p>Google字体: <span id="google-status">检查中...</span></p>
+    </div>
+</body>
+</html>
