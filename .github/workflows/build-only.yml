@@ -1,0 +1,55 @@
+name: Build Site Only
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+        cache: 'npm'
+        
+    - name: Install Dependencies
+      run: npm install
+      
+    - name: Build Site
+      run: |
+        npm run build
+        echo "✅ 站点构建完成"
+        echo "生成的静态文件在: public/"
+        echo "文件数: $(find public -type f | wc -l)"
+        
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: built-site
+        path: public/
+        retention-days: 1
+        
+    - name: Show Build Summary
+      run: |
+        echo "📊 构建摘要:"
+        echo "- 主题: Vivia"
+        echo "- 生成时间: $(date)"
+        echo "- 可手动下载构建结果"
+        echo ""
+        echo "🔧 手动部署步骤:"
+        echo "1. 下载Artifact"
+        echo "2. 重命名为docs/"
+        echo "3. 替换仓库中的docs目录"
+        echo "4. 提交并推送"
