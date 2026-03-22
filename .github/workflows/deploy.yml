@@ -41,7 +41,22 @@ jobs:
         git config --local user.name "GitHub Action"
         
     - name: Commit and Push to Main
+      env:
+        # 使用GITHUB_TOKEN进行身份验证
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        # 拉取最新更改
+        git pull origin main --rebase
+        
+        # 添加docs目录
         git add docs/
-        git commit -m "chore: 自动构建并更新docs目录 [skip ci]" || echo "没有更改可提交"
+        
+        # 提交更改
+        if git diff --cached --quiet; then
+          echo "没有更改可提交"
+        else
+          git commit -m "chore: 自动构建并更新docs目录 [skip ci]"
+        fi
+        
+        # 推送到main分支
         git push origin main
