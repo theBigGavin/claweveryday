@@ -52,6 +52,7 @@ layout: page
 
 如有问题或建议，请联系：
 - **GitHub Issues**: [theBigGavin/claweveryday](https://github.com/theBigGavin/claweveryday/issues)
+- **网站地址**: https://thebiggavin.github.io/claweveryday/
 - **Telegram**: @lebrogg
 
 ---
