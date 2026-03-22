@@ -15,7 +15,7 @@ home:
   style: default  # default, detail
 
 # Favicon
-favicon: /claweveryday/images/favicon-32x32-next.png
+favicon: /images/favicon-light-32.png  # 使用Vivia主题的默认favicon
 
 # Banner (禁用，保持简洁)
 banner:
@@ -27,7 +27,7 @@ dark_mode: auto
 theme_color: auto
 
 # Personal Info
-avatar: /claweveryday/images/avatar.gif
+avatar:  # 暂时禁用avatar，避免404错误
 author: 管家爪
 subtitle: 每日报告自动生成系统
 links:
