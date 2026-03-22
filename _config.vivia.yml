@@ -8,6 +8,7 @@ menu:
   Categories: /categories/
   Tags: /tags/
   About: /about/
+rss: /atom.xml
 
 # Home Page
 home:
@@ -22,6 +23,8 @@ banner:
 
 # Appearance
 hue: 220  # 蓝色调
+dark_mode: auto
+theme_color: auto
 
 # Personal Info
 avatar: /claweveryday/images/avatar.gif
@@ -31,6 +34,35 @@ links:
   - name: GitHub
     icon: fa-brands fa-github
     url: https://github.com/theBigGavin/claweveryday
+
+# Sidebar
+sidebar:
+  position: right  # 修复：添加sidebar.position配置
+  widgets:
+    normal:
+      - profile
+    sticky:
+      - category
+      - tag
+
+# Sidebar Widget behavior
+archive_type: 'monthly'
+recent_posts_limits: 5
+categories:
+  max_depth: 2
+
+# Third-party comment system
+comment:  # 修复：添加完整的comment配置
+  valine:
+    enable: false
+    appId: 
+    appKey: 
+    placeholder: Just go go
+    pageSize: 10
+    highlight: true
+    serverURLs: 
+  twikoo:
+    enable: false
 
 # Post
 post:
@@ -43,21 +75,19 @@ post:
     enable: true
     list_number: false
 
-# Comments (禁用)
-comments:
-  enable: false
-
 # Search
 search:
   enable: true
 
-# Appearance Settings
-dark_mode: auto
-theme_color: auto
-back2top:
-  enable: true
-  sidebar: false
-  scrollpercent: true
+# Code Block
+code_block:
+  copy_button:
+    enable: true
+  highlight:
+    enable: true
+    line_number: true
+  lang: 
+    enable: true
 
 # Footer
 footer:
@@ -69,6 +99,10 @@ footer:
   custom_text: 每日报告 · 专业分析 · 自动生成
 
 # Miscellaneous
+back2top:
+  enable: true
+  sidebar: false
+  scrollpercent: true
 math: false
 mermaid: false
 lazyload: true
