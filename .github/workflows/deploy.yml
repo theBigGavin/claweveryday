@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: true  # 获取主题子模块
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install Dependencies
+      run: npm install
+      
+    - name: Generate Site
+      run: |
+        npm run build
+        # 创建CNAME文件（如果需要自定义域名）
+        # echo "your-domain.com" > public/CNAME
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        publish_branch: gh-pages
+        cname: theBigGavin.github.io/claweveryday
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'

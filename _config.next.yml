@@ -1,0 +1,77 @@
+# Next Theme Configuration
+# Docs: https://theme-next.js.org/docs/
+
+# Scheme Settings
+scheme: Muse  # 专业风格：Muse/Pisces/Gemini
+
+# Dark Mode
+darkmode: false
+
+# Menu Settings
+menu:
+  home: / || fa fa-home
+  archives: /archives/ || fa fa-archive
+  categories: /categories/ || fa fa-folder
+  tags: /tags/ || fa fa-tags
+  about: /about/ || fa fa-user
+
+# Sidebar Settings
+sidebar:
+  position: right  # 右侧边栏
+  display: post    # 文章页面显示
+  offset: 12
+  b2t: false
+  scrollpercent: true
+
+# Post Settings
+post:
+  copyright:
+    enable: true
+    license: CC BY-NC-SA 4.0
+  reward:
+    enable: false
+  meta:
+    item_text: true
+
+# Search Settings
+search:
+  path: search.xml
+  field: post
+
+# Code Highlight Theme
+codeblock:
+  theme:
+    light: default
+    dark: dark
+  copy_button:
+    enable: true
+
+# Math Formulas
+math:
+  enable: false
+
+# Social Links
+social:
+  GitHub: https://github.com/theBigGavin || fab fa-github
+  # 可以添加更多社交链接
+
+# Footer Settings
+footer:
+  since: 2026
+  icon:
+    name: fa fa-heart
+    animated: true
+    color: "#ff0000"
+  powered:
+    enable: true
+    version: true
+  theme:
+    enable: true
+    version: true
+  custom_text: 每日报告自动生成系统
+
+# 百度统计 (可选)
+# baidu_analytics: your_baidu_analytics_key
+
+# Google Analytics (可选)
+# google_analytics: your_google_analytics_key

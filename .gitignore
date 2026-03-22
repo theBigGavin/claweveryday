@@ -1,0 +1,33 @@
+# Hexo
+public/
+.deploy_git/
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Environment
+.env
+.env.local
+
+# SSH keys
+.ssh/
+id_*
+
+# Project specific
+../scripts/
+../templates/
+../config/
+../docs/
+../logs/
