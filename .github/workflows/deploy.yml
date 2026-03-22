@@ -36,6 +36,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
         publish_branch: gh-pages
-        cname: theBigGavin.github.io/claweveryday
+        # 注意：GitHub用户名通常是小写
+        cname: thebiggavin.github.io
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
