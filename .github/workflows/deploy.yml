@@ -36,13 +36,16 @@ jobs:
         mv public docs
         
     - name: Deploy to Main Branch
+      env:
+        # 使用PAT或配置了写权限的GITHUB_TOKEN
+        GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
       run: |
         # 配置Git
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
         # 设置远程URL使用token
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git remote set-url origin https://x-access-token:${{ env.GH_TOKEN }}@github.com/${{ github.repository }}
         
         # 检查是否有docs更改
         if [ -d "docs" ]; then
