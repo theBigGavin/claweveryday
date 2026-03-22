@@ -9,11 +9,11 @@ darkmode: false
 
 # Menu Settings
 menu:
-  home: / || fa fa-home
-  archives: /archives/ || fa fa-archive
-  categories: /categories/ || fa fa-folder
-  tags: /tags/ || fa fa-tags
-  about: /about/ || fa fa-user
+  home: /claweveryday/ || fa fa-home
+  archives: /claweveryday/archives/ || fa fa-archive
+  categories: /claweveryday/categories/ || fa fa-folder
+  tags: /claweveryday/tags/ || fa fa-tags
+  about: /claweveryday/about/ || fa fa-user
 
 # Sidebar Settings
 sidebar:
