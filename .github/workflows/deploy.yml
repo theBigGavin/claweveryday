@@ -33,10 +33,11 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        # 使用部署密钥（需要配置ACTIONS_DEPLOY_KEY secret）
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_dir: ./public
         publish_branch: gh-pages
-        # 注意：GitHub用户名通常是小写
+        # 使用小写用户名
         cname: thebiggavin.github.io
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
