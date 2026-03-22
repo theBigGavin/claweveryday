@@ -14,12 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout
+    - name: Checkout with token
       uses: actions/checkout@v4
       with:
         submodules: true  # 获取主题子模块
-        # 使用GITHUB_TOKEN进行身份验证
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}  # 使用token以便推送
         
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -37,15 +36,25 @@ jobs:
         rm -rf docs
         mv public docs
         
-    - name: Deploy to Main Branch
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        # 部署到main分支的docs目录
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
-        publish_branch: main
-        destination_dir: ./docs
-        keep_files: false  # 不保留现有docs文件
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: 'chore: 自动构建并更新docs目录 [skip ci]'
+    - name: Configure Git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+    - name: Deploy to Docs Directory
+      run: |
+        # 配置远程URL使用token
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        
+        # 拉取最新更改（避免冲突）
+        git pull origin main --rebase --autostash
+        
+        # 强制替换docs目录
+        git rm -rf docs/ 2>/dev/null || true
+        git add docs/
+        
+        # 提交更改
+        git commit -m "chore: 自动构建并更新docs目录 [skip ci]" || echo "没有更改可提交"
+        
+        # 推送到main分支（使用force-with-lease安全推送）
+        git push origin main --force-with-lease
