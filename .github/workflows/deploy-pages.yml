@@ -1,0 +1,65 @@
+name: Deploy to GitHub Pages
+
+on:
+  # 在push到main分支时自动运行
+  push:
+    branches: ["main"]
+  # 允许手动触发
+  workflow_dispatch:
+
+# 设置权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 只允许一个并发部署
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+env:
+  # 强制使用Node.js 24，避免弃用警告
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          
+      - name: Verify docs directory exists
+        run: |
+          if [ ! -d "docs" ] || [ ! -f "docs/index.html" ]; then
+            echo "❌ docs目录不存在或没有index.html"
+            echo "说明: 日报生成脚本应该已经构建了docs目录"
+            echo "可能的原因:"
+            echo "1. 日报生成脚本未运行"
+            echo "2. Hexo构建失败"
+            echo "3. 手动推送了没有docs目录的代码"
+            exit 1
+          fi
+          
+          echo "✅ docs目录验证通过"
+          echo "index.html大小: $(wc -c < docs/index.html) 字节"
+          echo "总文件数: $(find docs -type f | wc -l)"
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 上传docs目录
+          path: './docs'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
