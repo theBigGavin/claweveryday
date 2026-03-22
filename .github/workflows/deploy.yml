@@ -18,6 +18,8 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: true  # 获取主题子模块
+        # 使用GITHUB_TOKEN进行身份验证
+        token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -35,28 +37,15 @@ jobs:
         rm -rf docs
         mv public docs
         
-    - name: Configure Git
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        
-    - name: Commit and Push to Main
-      env:
-        # 使用GITHUB_TOKEN进行身份验证
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        # 拉取最新更改
-        git pull origin main --rebase
-        
-        # 添加docs目录
-        git add docs/
-        
-        # 提交更改
-        if git diff --cached --quiet; then
-          echo "没有更改可提交"
-        else
-          git commit -m "chore: 自动构建并更新docs目录 [skip ci]"
-        fi
-        
-        # 推送到main分支
-        git push origin main
+    - name: Deploy to Main Branch
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        # 部署到main分支的docs目录
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        publish_branch: main
+        destination_dir: ./docs
+        keep_files: false  # 不保留现有docs文件
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: 'chore: 自动构建并更新docs目录 [skip ci]'
