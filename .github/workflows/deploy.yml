@@ -32,9 +32,10 @@ jobs:
     - name: Build Site
       run: |
         npm run build
-        # 重命名public为docs
-        rm -rf docs
-        mv public docs
+        # Hexo已直接生成到docs目录（根据_config.yml配置）
+        echo "✅ 站点构建完成"
+        echo "生成的文件在: docs/"
+        echo "文件数: $(find docs -type f 2>/dev/null | wc -l || echo 0)"
         
     - name: Deploy to Main Branch
       env:

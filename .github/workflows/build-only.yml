@@ -32,14 +32,14 @@ jobs:
       run: |
         npm run build
         echo "✅ 站点构建完成"
-        echo "生成的静态文件在: public/"
-        echo "文件数: $(find public -type f | wc -l)"
+        echo "生成的静态文件在: docs/ (根据Hexo配置)"
+        echo "文件数: $(find docs -type f 2>/dev/null | wc -l || echo 0)"
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: built-site
-        path: public/
+        path: docs/
         retention-days: 1
         
     - name: Show Build Summary
