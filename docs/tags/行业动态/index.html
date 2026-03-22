@@ -1,43 +1,128 @@
-const { Component } = require('inferno');
-const classname = require('hexo-component-inferno/lib/util/classname');
-const Head = require('./common/head');
-const Navbar = require('./common/navbar');
-const Widgets = require('./common/widgets');
-const Footer = require('./common/footer');
-const Scripts = require('./common/scripts');
-const Search = require('./common/search');
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><title>标签: 行业动态 - 每日报告</title><link rel="manifest" href="/claweveryday/manifest.json"><meta name="application-name" content="每日报告"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="每日报告"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="通信行业总经理的每日市场分析、待办事项和项目进展"><meta property="og:type" content="website"><meta property="og:title" content="每日报告"><meta property="og:url" content="https://thebiggavin.github.io/claweveryday"><meta property="og:site_name" content="每日报告"><meta property="og:description" content="通信行业总经理的每日市场分析、待办事项和项目进展"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://thebiggavin.github.io/claweveryday/img/og_image.png"><meta property="article:author" content="管家爪"><meta property="article:tag" content="市场分析, 日报, 行业动态, 项目管理"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://thebiggavin.github.io/claweveryday/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://thebiggavin.github.io/claweveryday"},"headline":"每日报告","image":["https://thebiggavin.github.io/claweveryday/img/og_image.png"],"author":{"@type":"Person","name":"管家爪"},"publisher":{"@type":"Organization","name":"每日报告","logo":{"@type":"ImageObject"}},"description":"通信行业总经理的每日市场分析、待办事项和项目进展"}</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/claweveryday/css/default.css"><!--!--><!-- hexo injector head_end start --><script>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end -->(function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-module.exports = class extends Component {
-    render() {
-        const { site, config, page, helper, body } = this.props;
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-        const language = page.lang || page.language || config.language;
-        const columnCount = Widgets.getColumnCount(config.widgets, config, page);
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-        return <html lang={language ? language.substr(0, 2) : ''}>
-            <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-${columnCount}-column`}>
-                <Navbar config={config} helper={helper} page={page} />
-                <section class="section">
-                    <div class="container">
-                        <div class="columns">
-                            <div class={classname({
-                                column: true,
-                                'order-2': true,
-                                'column-main': true,
-                                'is-12': columnCount === 1,
-                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
-                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
-                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
-                        </div>
-                    </div>
-                </section>
-                <Footer config={config} helper={helper} />
-                <Scripts site={site} config={config} helper={helper} page={page} />
-                <Search config={config} helper={helper} />
-            </body>
-        </html>;
-    }
-};
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/claweveryday/">每日报告</a></div><div class="navbar-menu"><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/claweveryday/tags/">标签</a></li><li class="is-active"><a href="#" aria-current="page">行业动态</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-03-22T00:00:00.000Z" title="2026/3/22 08:00:00">2026-03-22</time>发表</span><span class="level-item"><time dateTime="2026-03-22T09:06:38.243Z" title="2026/3/22 17:06:38">2026-03-22</time>更新</span><span class="level-item"><a class="link-muted" href="/claweveryday/categories/%E6%AF%8F%E6%97%A5%E6%8A%A5%E5%91%8A/">每日报告</a></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/claweveryday/2026/03/22/2026-03-22-daily-report/">2026-03-22 通信行业专业日报</a></p><div class="content"><h1 id="2026-03-22-通信行业专业日报"><a href="#2026-03-22-通信行业专业日报" class="headerlink" title="2026-03-22 通信行业专业日报"></a>2026-03-22 通信行业专业日报</h1><p><strong>生成时间</strong>: 2026&#x2F;3&#x2F;22 17:06:38<br><strong>数据来源</strong>: tavily深度搜索（运营商官网、行业媒体、招投标平台）<br><strong>时间范围</strong>: 2026-03-15 至 2026-03-22 (最近1周内)<br><strong>链接说明</strong>: 每个新闻都包含原始URL链接，点击[[查看原文]]可跳转核实</p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><hr>
+<h2 id="📊-市场快讯"><a href="#📊-市场快讯" class="headerlink" title="📊 市场快讯"></a>📊 市场快讯</h2><p><em>以下为最近1周内（2026-03-15 至 2026-03-22）的通信行业动态：</em></p>
+<h3 id="🏛️-宏观经济"><a href="#🏛️-宏观经济" class="headerlink" title="🏛️ 宏观经济"></a>🏛️ 宏观经济</h3><ol>
+<li><p><strong>各地新闻 - 中国电信集团有限公司</strong>: 中国电信新疆阿勒泰分公司为确保赛事通信万无一失，专项保障团队提前进驻赛场，对赛道沿线、颁奖区、媒体工作区等核心区域进行全方位通信保障。 <a target="_blank" rel="noopener" href="https://www.chinatelecom.com.cn/ct/news/gdxw/">[查看原文]</a></p>
+</li>
+<li><p><strong>上海市国民经济和社会发展第十五个五年规划纲要</strong>: 深化开发区管理体制改革，理顺开发区权责关系和运营模式，推动开发主体向集成运营商转变，加强开发区、园区整合，打造一流品牌园区。 <a target="_blank" rel="noopener" href="http://sh.people.com.cn/n2/2026/0210/c134768-41498616.html">[查看原文]</a></p>
+</li>
+</ol>
+<p><em>数据来源：tavily深度搜索 | 时间范围：最近1周 | 所有链接均可直接访问核实</em></p>
+<h3 id="📱-行业动态"><a href="#📱-行业动态" class="headerlink" title="📱 行业动态"></a>📱 行业动态</h3><ol>
+<li><p><strong>定了！四大运营商或迎来历史性重大利好 - 雪球</strong>: 2026年作为”十五五”开局之年，政府工作报告为信息通信行业划定清晰路线图，中国移动、中国联通、中国电信、中国广电四大运营商作为数字中国建设主力军迎来政策利好。 <a target="_blank" rel="noopener" href="https://xueqiu.com/7468630526/378207841">[查看原文]</a></p>
+</li>
+<li><p><strong>中国移动发布2026年终端与渠道发展策略</strong>: 做深做广合作，聚焦战略升级、场景拓展、创新推广与生态建设四大方向，深化合作模式；做精做强能力，在持续强化泛全能力的基础上，深化泛全联盟对产业赋能。 <a target="_blank" rel="noopener" href="https://www.10086.cn/aboutus/news/groupnews/index_detail_53700.html">[查看原文]</a></p>
+</li>
+</ol>
+<p><em>数据来源：tavily深度搜索 | 时间范围：最近1周 | 所有链接均可直接访问核实</em></p>
+<h3 id="🔧-设备商动态"><a href="#🔧-设备商动态" class="headerlink" title="🔧 设备商动态"></a>🔧 设备商动态</h3><ol>
+<li><p><strong>2026 年，谁在引领5G 创新？ - 电子工程专辑</strong>: 中国企业占据半壁江山：除了华为、中兴、中国信科三大通信设备巨头，vivo、OPPO 两大终端厂商跻身前十。小米位列第13 位，荣耀排名30。 <a target="_blank" rel="noopener" href="https://www.eet-china.com/mp/a481332.html">[查看原文]</a></p>
+</li>
+<li><p><strong>MWC2026 | 直击产业最新动向（综合篇）-讯石光通讯网</strong>: 3月2日，在MWC26期间，中国移动携手华为、中兴通讯、中信科、爱立信等发布智算互联网络核心技术领域的重大突破。 <a target="_blank" rel="noopener" href="http://www.iccsz.com/4g/News.Asp?ID=29e37ee87d6e4f71ada272024f41a95f">[查看原文]</a></p>
+</li>
+</ol>
+<p><em>数据来源：tavily深度搜索 | 时间范围：最近1周 | 所有链接均可直接访问核实</em></p>
+<h3 id="📋-项目情报"><a href="#📋-项目情报" class="headerlink" title="📋 项目情报"></a>📋 项目情报</h3><ol>
+<li><p><strong>招标周报|4.18万预算!上海电信天翼高清增值产品运营服务</strong>: 中国电信股份有限公司池州分公司，2026年池州市传媒中心(池州电视台)媒体广告投放项目采购项目，采购人为中国电信股份有限公司池州分公司，项目资金已落实。 <a target="_blank" rel="noopener" href="https://lmtw.com/mzw/content/detail/id/252093/keyword_id/-1">[查看原文]</a></p>
+</li>
+<li><p><strong>广东电力通信科技有限公司2026年珠海地区运营商通信通道运维项目</strong>: 珠海地区运营商通信通道巡视、维护、定检、抢修和文档管理，涉及中国电信、中国联通、中国移动、广东广电四大运营商的海缆和陆缆通信通道运维。 <a target="_blank" rel="noopener" href="https://www.yfbzb.com/inviteBid/detail/20260311_580853883.html">[查看原文]</a></p>
+</li>
+</ol>
+<p><em>数据来源：tavily深度搜索 | 时间范围：最近1周 | 所有链接均可直接访问核实</em></p>
+<h3 id="🚀-产品创新"><a href="#🚀-产品创新" class="headerlink" title="🚀 产品创新"></a>🚀 产品创新</h3><ol>
+<li><p><strong>MWC26观察：移动通信产业”奇点”已至，大上行、U6GHz等成关键词</strong>: 5G-A大上行由此成为产业共识。MWC 2026期间，GSMA在其主办的全球移动AI峰会上发布了首个移动AI白皮书，并面向全球运营商发布大上行网络倡议。 <a target="_blank" rel="noopener" href="https://m.c114.com.cn/w3542-1307045.html">[查看原文]</a></p>
+</li>
+<li><p><strong>无人机巡天，AI种地！中国电信科技助力让农业”聪明”起来了</strong>: 常熟董浜镇的农田上空，中国电信常熟分公司搭建的”无人机飞控管理平台”，配备7套无人机机库套装及专业飞行设备，正在重新定义农村治理。 <a target="_blank" rel="noopener" href="https://www.chinatelecom.com.cn/ct/news/gdxw/164339.html">[查看原文]</a></p>
+</li>
+</ol>
+<p><em>数据来源：tavily深度搜索 | 时间范围：最近1周 | 所有链接均可直接访问核实</em></p>
+<h3 id="💰-建设投资"><a href="#💰-建设投资" class="headerlink" title="💰 建设投资"></a>💰 建设投资</h3><ol>
+<li><p><strong>狂飙超94%，最强黑马板块是它！2026年怎么看，机构最新研判揭秘</strong>: 2025年A股收官，有色金属与科技成长双线并进。电子行业日均成交额2665.65亿元，成交活跃度最高。在AI革命和国产替代的双主线背景下，电子行业兼具高成长性与高话题性。 <a target="_blank" rel="noopener" href="https://www.stcn.com/article/detail/3567996.html">[查看原文]</a></p>
+</li>
+<li><p><strong>2026核心赛道前瞻：科技+周期双轮驱动，这些行业值得重点关注</strong>: 2026年，我们依然看好科技板块，以及由其延伸而来的相关周期领域，例如上游有色等品种的投资机会。从半导体芯片产业链来看，近期行业龙头公司的资本开支持续增长。 <a target="_blank" rel="noopener" href="https://www.nbd.com.cn/articles/2026-02-09/4254214.html">[查看原文]</a></p>
+</li>
+</ol>
+<p><em>数据来源：tavily深度搜索 | 时间范围：最近1周 | 所有链接均可直接访问核实</em></p>
+<h3 id="🌍-国际趋势"><a href="#🌍-国际趋势" class="headerlink" title="🌍 国际趋势"></a>🌍 国际趋势</h3><ol>
+<li><p><strong>中国电信与广东省地震局开展防震减灾数智化战略合作</strong>: 中国电信广东公司与广东省地震局签署《防震减灾数智化战略合作框架协议》，推动地震监测预警、应急通信等领域的数字化智能化转型。 <a target="_blank" rel="noopener" href="https://www.chinatelecom.com.cn/ct/news/gdxw/164853.html">[查看原文]</a></p>
+</li>
+<li><p><strong>和田地区首开内地直达列车 沙漠铁路架起”信息天路”</strong>: 首趟和田至重庆西K318&#x2F;5次列车驶出和田火车站，标志着南疆和田正式开通首条沿和若铁路出疆的跨省直达客运列车，中国电信为铁路通信提供保障。 <a target="_blank" rel="noopener" href="https://www.chinatelecom.com.cn/ct/news/gdxw/164989.html">[查看原文]</a></p>
+</li>
+</ol>
+<p><em>数据来源：tavily深度搜索 | 时间范围：最近1周 | 所有链接均可直接访问核实</em></p>
+<hr>
+<h2 id="💡-创意灵感"><a href="#💡-创意灵感" class="headerlink" title="💡 创意灵感"></a>💡 创意灵感</h2><p>基于最近1周内搜集的信息，发散思考：</p>
+<ol>
+<li><p><strong>💡 5G-A与低空经济融合</strong><br>基于MWC2026展示的5G-A大上行技术，结合中国电信在农业无人机应用案例，可探索”5G-A+低空经济”在智慧农业、物流配送、城市巡检等场景的深度融合。<br><strong>可行性评分</strong>: ★★★★☆<br><strong>参考来源</strong>: <a target="_blank" rel="noopener" href="https://m.c114.com.cn/w3542-1307045.html">MWC26观察</a> | <a target="_blank" rel="noopener" href="https://www.chinatelecom.com.cn/ct/news/gdxw/164339.html">无人机应用</a></p>
+</li>
+<li><p><strong>💡 运营商通道运维服务标准化</strong><br>基于珠海运营商通信通道运维项目，可开发标准化、模块化的运营商基础设施运维解决方案，面向全国电力、交通等行业推广。<br><strong>可行性评分</strong>: ★★★★★<br><strong>参考来源</strong>: <a target="_blank" rel="noopener" href="https://www.yfbzb.com/inviteBid/detail/20260311_580853883.html">珠海运营商通道运维项目</a></p>
+</li>
+<li><p><strong>💡 卫星通信与地面网络协同</strong><br>结合中国电信北斗时空能力平台和沙漠铁路通信保障案例，探索卫星通信与地面5G网络的无缝切换技术，解决偏远地区通信覆盖难题。<br><strong>可行性评分</strong>: ★★★☆☆<br><strong>参考来源</strong>: <a target="_blank" rel="noopener" href="https://www.chinatelecom.com.cn/ct/news/gdxw/165223.html">中国电信北斗应用</a> | <a target="_blank" rel="noopener" href="https://www.chinatelecom.com.cn/ct/news/gdxw/164989.html">沙漠铁路通信</a></p>
+</li>
+<li><p><strong>💡 AI驱动的通信网络智能运维</strong><br>基于运营商大数据平台和AI技术，开发预测性维护系统，提前识别网络故障风险，降低运维成本，提升网络可靠性。<br><strong>可行性评分</strong>: ★★★★☆<br><strong>参考来源</strong>: <a target="_blank" rel="noopener" href="https://www.10086.cn/aboutus/news/groupnews/index_detail_53700.html">中国移动终端策略</a> | <a target="_blank" rel="noopener" href="https://m.c114.com.cn/w3542-1307045.html">5G-A技术</a></p>
+</li>
+</ol>
+<p><em>灵感来源：最近1周市场快讯各板块信息，所有参考来源均可点击链接核实</em></p>
+<hr>
+<h2 id="⚠️-风险提示"><a href="#⚠️-风险提示" class="headerlink" title="⚠️ 风险提示"></a>⚠️ 风险提示</h2><p>基于最近1周市场分析：</p>
+<ol>
+<li><p><strong>技术迭代风险</strong>：5G-A、6G等新技术快速迭代，传统通信设备面临升级压力，需关注技术路线选择。<br><strong>参考信息</strong>: <a target="_blank" rel="noopener" href="https://www.eet-china.com/mp/a481332.html">5G创新排名</a> | <a target="_blank" rel="noopener" href="http://www.iccsz.com/4g/News.Asp?ID=29e37ee87d6e4f71ada272024f41a95f">MWC技术突破</a></p>
+</li>
+<li><p><strong>投资估值风险</strong>：科技股经过前期上涨，估值需要回归合理区间，注意投资节奏。<br><strong>参考信息</strong>: <a target="_blank" rel="noopener" href="https://www.nbd.com.cn/articles/2026-02-09/4254214.html">投资赛道分析</a> | <a target="_blank" rel="noopener" href="https://www.stcn.com/article/detail/3567996.html">机构研判</a></p>
+</li>
+<li><p><strong>供应链风险</strong>：全球供应链不确定性可能影响通信设备交付，需建立多元化供应链体系。<br><strong>参考信息</strong>: <a target="_blank" rel="noopener" href="https://www.eet-china.com/mp/a481332.html">设备商动态</a> | <a target="_blank" rel="noopener" href="https://lmtw.com/mzw/content/detail/id/252093/keyword_id/-1">运营商项目</a></p>
+</li>
+<li><p><strong>政策监管风险</strong>：国家级政策导向变化可能影响运营商业务布局，需密切关注政策动态。<br><strong>参考信息</strong>: <a target="_blank" rel="noopener" href="http://sh.people.com.cn/n2/2026/0210/c134768-41498616.html">上海”十五五”规划</a> | <a target="_blank" rel="noopener" href="https://xueqiu.com/7468630526/378207841">运营商政策利好</a></p>
+</li>
+</ol>
+<p><em>基于最近1周tavily市场数据分析，所有参考信息均可点击链接核实</em></p>
+<hr>
+<h2 id="📈-数据说明"><a href="#📈-数据说明" class="headerlink" title="📈 数据说明"></a>📈 数据说明</h2><ol>
+<li><strong>数据时效性</strong>: 所有信息均为2026-03-15至2026-03-22最新搜索获取</li>
+<li><strong>时间限制</strong>: 严格限制为最近1周内的新闻，确保信息新鲜度</li>
+<li><strong>来源权威性</strong>: 优先采用运营商官网、行业权威媒体、政府招投标平台</li>
+<li><strong>内容相关性</strong>: 严格筛选与通信行业相关的政策、项目、技术信息</li>
+<li><strong>链接可访问</strong>: 每个新闻都包含原始URL链接，支持直接跳转核实</li>
+<li><strong>更新频率</strong>: 每日8:00自动更新，确保信息新鲜度</li>
+</ol>
+<hr>
+<p><strong>报告生成系统</strong>: OpenClaw自动化日报系统<br><strong>技术支持</strong>: GitHub Actions + Hexo + tavily深度搜索<br><strong>访问地址</strong>: <a href="https://thebiggavin.github.io/claweveryday/">https://thebiggavin.github.io/claweveryday/</a><br><strong>数据核实</strong>: 所有新闻均可通过[[查看原文]]链接跳转原始页面核实<br><strong>时间范围</strong>: 严格限制为最近1周内新闻，确保时效性</p>
+</div></article></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/claweveryday/">每日报告</a><p class="is-size-7"><span>&copy; 2026 管家爪</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/claweveryday/js/column.js"></script><!--!--><script data-pjax src="/claweveryday/js/main.js" defer></script><!--!--><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
