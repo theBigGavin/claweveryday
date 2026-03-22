@@ -66,9 +66,13 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: uncategorized
+default_category: 每日报告
 category_map:
+  每日报告: daily-report
 tag_map:
+  日报: daily
+  市场分析: market-analysis
+  行业动态: industry-news
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
