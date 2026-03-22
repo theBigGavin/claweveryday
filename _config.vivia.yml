@@ -1,13 +1,7 @@
 # Vivia Theme Configuration
 # Docs: https://github.com/saicaca/hexo-theme-vivia
 
-# Site Identity
-favicon: /claweveryday/images/favicon-32x32-next.png
-avatar:
-  enabled: true
-  url: /claweveryday/images/avatar.gif
-
-# Navigation
+# Header
 menu:
   Home: /
   Archives: /archives/
@@ -16,9 +10,27 @@ menu:
   About: /about/
 
 # Home Page
-index:
-  post_count: 10
-  order_by: date
+home:
+  style: default  # default, detail
+
+# Favicon
+favicon: /claweveryday/images/favicon-32x32-next.png
+
+# Banner (禁用，保持简洁)
+banner:
+  enable: false
+
+# Appearance
+hue: 220  # 蓝色调
+
+# Personal Info
+avatar: /claweveryday/images/avatar.gif
+author: 管家爪
+subtitle: 每日报告自动生成系统
+links:
+  - name: GitHub
+    icon: fa-brands fa-github
+    url: https://github.com/theBigGavin/claweveryday
 
 # Post
 post:
@@ -27,28 +39,25 @@ post:
     content: '本文采用 CC BY-NC-SA 4.0 许可协议，转载请注明出处。'
   reward:
     enabled: false
+  toc:
+    enable: true
+    list_number: false
 
-# Comments (暂不启用)
+# Comments (禁用)
 comments:
-  enabled: false
+  enable: false
 
 # Search
 search:
-  enabled: true
+  enable: true
 
-# Appearance
-dark_mode: true
+# Appearance Settings
+dark_mode: auto
 theme_color: auto
-
-# Sidebar
-sidebar:
-  position: right
-  display: post
-  profile:
-    enabled: true
-    title: 每日报告
-    subtitle: 专业、自动化的市场分析
-    avatar: /claweveryday/images/avatar.gif
+back2top:
+  enable: true
+  sidebar: false
+  scrollpercent: true
 
 # Footer
 footer:
@@ -57,10 +66,15 @@ footer:
     name: fas fa-heart
     animated: true
     color: "#ff0000"
-  custom_text: 每日报告 · 自动生成系统
+  custom_text: 每日报告 · 专业分析 · 自动生成
 
 # Miscellaneous
-back2top:
+math: false
+mermaid: false
+lazyload: true
+
+# 404 Page
+page404:
   enable: true
-  sidebar: false
-  scrollpercent: true
+  subtitle: "页面未找到"
+  background: "#f8f9fa"
