@@ -18,9 +18,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+# 全局环境变量 - 强制使用Node.js 24运行时
 env:
-  # 强制使用Node.js 24，避免弃用警告
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  NODE_VERSION: '24'
 
 jobs:
   deploy:
@@ -30,10 +31,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
-      - name: Checkout
+      # 使用actions/checkout的最新稳定版本
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: true
+          # 使用最新稳定版本，GitHub会自动处理Node.js运行时
           
       - name: Verify docs directory exists
         run: |
@@ -51,10 +54,11 @@ jobs:
           echo "index.html大小: $(wc -c < docs/index.html) 字节"
           echo "总文件数: $(find docs -type f | wc -l)"
           
-      - name: Setup Pages
+      # GitHub Pages相关actions
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v4
         
-      - name: Upload artifact
+      - name: Upload artifact to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           # 上传docs目录
@@ -63,3 +67,15 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        
+      - name: Deployment Status
+        run: |
+          echo "✅ 部署完成"
+          echo "网站URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "部署时间: $(date)"
+          echo ""
+          echo "📊 部署信息:"
+          echo "- 使用Node.js运行时: 24 (通过FORCE_JAVASCRIPT_ACTIONS_TO_NODE24强制)"
+          echo "- Actions版本: 最新稳定版"
+          echo "- 源目录: main分支/docs目录"
+          echo "- 目标: GitHub Pages"

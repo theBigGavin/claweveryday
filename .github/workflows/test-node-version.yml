@@ -1,0 +1,49 @@
+name: Test Node.js Version
+
+on:
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check Node.js version in runner
+        run: |
+          echo "📊 Node.js版本信息:"
+          node --version
+          npm --version
+          echo ""
+          echo "📋 环境变量:"
+          echo "FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: $FORCE_JAVASCRIPT_ACTIONS_TO_NODE24"
+          
+      - name: Test actions/checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Check actions runtime
+        run: |
+          echo "🔧 Actions运行时信息:"
+          echo "1. actions/checkout@v4 应该使用Node.js 24运行时"
+          echo "2. 如果还有警告，说明action本身需要更新"
+          echo ""
+          echo "📝 解决方案:"
+          echo "A. 等待GitHub更新actions到node24运行时"
+          echo "B. 暂时忽略警告（不影响功能）"
+          echo "C. 使用具体的commit hash（如果可用）"
+          
+      - name: Create test file
+        run: |
+          echo "测试文件创建时间: $(date)" > test.txt
+          echo "Node.js版本: $(node --version)" >> test.txt
+          echo "GitHub Actions信息" >> test.txt
+          
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test.txt
