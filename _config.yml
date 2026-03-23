@@ -98,6 +98,12 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: aomori
 
+# Excerpt - 自动摘要插件
+excerpt:
+  depth: 3          # 提取前3段作为摘要
+  excerpt_excludes: []
+  more_excludes: []
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
