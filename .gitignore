@@ -50,6 +50,7 @@ pnpm-debug.log*
 # 构建输出
 dist/
 build/
+!themes/aomori/source/dist/
 out/
 .next/
 .nuxt/
